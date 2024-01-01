@@ -20,5 +20,7 @@ services:
     stdin_open: true
 
 networks:
+  default:
+    name: mysqldb_net
   mysqldb:
     external: true
