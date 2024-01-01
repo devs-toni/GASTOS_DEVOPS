@@ -3,24 +3,22 @@ version: '3.8'
 services:
 
   backend:
-    container_name: gastos-api
+    container_name: servgasapi
     image: devstoni/gastos-api:0.11.0
-    volumes:
-      - /db/migrations:/db/migrations
     environment:
       - 'spring.profiles.active=prod'
     ports:
       - '8081:8081'
     networks:
-      - mysqldb_default
+      - mysqldb
 
   frontend:
-    container_name: gastos-front
+    container_name: servgasfrnt
     image: devstoni/gastos-front:0.1.5
     ports:
       - 3001:3001
     stdin_open: true
 
 networks:
-  mysqldb_default:
+  mysqldb:
     external: true
