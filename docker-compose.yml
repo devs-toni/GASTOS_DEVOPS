@@ -19,9 +19,11 @@ services:
     ports:
       - 3001:3001
     stdin_open: true
+    networks:
+      - servgasops
 
 networks:
-  default:
-    name: servgasops
+  servgasops:
+    external: false
   mysqldb:
     external: true
