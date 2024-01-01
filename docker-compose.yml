@@ -11,8 +11,9 @@ services:
       - 'spring.profiles.active=prod'
     ports:
       - '8081:8081'
-    links:
-      - mysqldb
+    networks:
+      mysqldb_default:
+        external: true
 
   frontend:
     container_name: gastos-front
