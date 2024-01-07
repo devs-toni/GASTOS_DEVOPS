@@ -3,21 +3,23 @@ version: '3.8'
 services:
 
   backend:
-    container_name: servgasapi
+    container_name: GASTOS_API_SERVICE
     image: devstoni/gastos-api:0.11.0
     environment:
       - 'spring.profiles.active=prod'
     ports:
       - '8081:8081'
     networks:
-      - mysqldb
+      - mysql_net
       - net
 
   frontend:
-    container_name: servgasfrnt
+    container_name: GASTOS_FRONT_SERVICE
     image: devstoni/gastos-front:0.1.5
     ports:
-      - 3001:3001
+      - $CLIENT_PORT:3001
+    environment:
+      - REACT_APP_NODE_ENV=$ENV
     stdin_open: true
     networks:
       - net
@@ -25,5 +27,6 @@ services:
 networks:
   net:
     external: false
-  mysqldb:
+
+  mysql_net:
     external: true
