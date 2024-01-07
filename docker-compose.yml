@@ -4,7 +4,7 @@ services:
 
   backend:
     container_name: GASTOS_API_SERVICE
-    image: devstoni/gastos-api:0.11.0
+    image: devstoni/gastos-api:0.12.0
     environment:
       - spring.profiles.active=prod
       - SERVER_PORT=$SERVER_PORT
@@ -19,7 +19,7 @@ services:
 
   frontend:
     container_name: GASTOS_FRONT_SERVICE
-    image: devstoni/gastos-front:0.1.5
+    image: devstoni/gastos-front:0.1.6
     ports:
       - $CLIENT_PORT:3001
     environment:
