@@ -6,9 +6,13 @@ services:
     container_name: GASTOS_API_SERVICE
     image: devstoni/gastos-api:0.11.0
     environment:
-      - 'spring.profiles.active=prod'
+      - spring.profiles.active=prod
+      - SERVER_PORT=$SERVER_PORT
+      - DB_HOST=$DB_HOST
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
     ports:
-      - '8081:8081'
+      - $SERVER_HOST_PORT:$SERVER_PORT
     networks:
       - mysql_net
       - net
