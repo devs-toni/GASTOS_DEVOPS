@@ -10,7 +10,7 @@ services:
       MYSQL_DATABASE: $DB_NAME
       MYSQL_ROOT_PASSWORD: $DB_PASSWORD
     ports:
-      - 3307:3306
+      - $DB_PORT:3306
     volumes:
       - data:/gastos-data
     networks:
@@ -39,7 +39,7 @@ services:
     ports:
       - $CLIENT_PORT:3001
     environment:
-      - REACT_APP_NODE_ENV=$ENV
+      - REACT_APP_NODE_ENV=$CLIENT_ENV
     stdin_open: true
     networks:
       - net
