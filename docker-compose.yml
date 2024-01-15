@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-
+      
   database:
     container_name: gastos-database
     image: mysql:latest
@@ -34,7 +34,7 @@ services:
       - database
 
   frontend:
-    container_name: gastos-front
+    container_name: gastos-client
     image: devstoni/gastos-front:0.1.7
     ports:
       - $CLIENT_HOST_PORT:3001
