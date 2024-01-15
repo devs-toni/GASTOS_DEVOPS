@@ -2,8 +2,23 @@ version: '3.8'
 
 services:
 
+  database:
+    container_name: gastos-database
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: $DB_NAME
+      MYSQL_ROOT_PASSWORD: $DB_PASSWORD
+    ports:
+      - $DB_PORT:3306
+    volumes:
+      - data:/gastos-data
+    networks:
+      - net
+      
   backend:
-    container_name: GASTOS_API_SERVICE
+    container_name: gastos-api
+    restart: always
     image: devstoni/gastos-api:0.12.0
     environment:
       - spring.profiles.active=prod
@@ -14,23 +29,24 @@ services:
     ports:
       - $SERVER_HOST_PORT:$SERVER_PORT
     networks:
-      - mysql_net
       - net
+    depends_on: 
+      - database
 
   frontend:
-    container_name: GASTOS_FRONT_SERVICE
-    image: devstoni/gastos-front:0.1.6
+    container_name: gastos-front
+    image: devstoni/gastos-front:0.1.7
     ports:
-      - $CLIENT_PORT:3001
+      - $CLIENT_HOST_PORT:3001
     environment:
-      - REACT_APP_NODE_ENV=$ENV
+      - REACT_APP_NODE_ENV=$CLIENT_ENV
     stdin_open: true
     networks:
       - net
 
+volumes:
+  data:
+
 networks:
   net:
     external: false
-
-  mysql_net:
-    external: true
