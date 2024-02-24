@@ -12,8 +12,7 @@ services:
     ports:
       - $DB_PORT:3306
     volumes:
-      - data:/gastos-data
-    networks:
+      - data:/var/lib/mysql
       - net
       
   backend:
