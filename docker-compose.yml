@@ -5,7 +5,7 @@ services:
   database:
     container_name: gastos-database
     image: mysql:latest
-    restart: always
+    restart: unless-stopped
     environment:
       MYSQL_DATABASE: $DB_NAME
       MYSQL_ROOT_PASSWORD: $DB_PASSWORD
@@ -17,7 +17,7 @@ services:
       
   backend:
     container_name: gastos-api
-    restart: always
+    restart: unless-stopped
     image: devstoni/gastos-api:0.12.0
     environment:
       - spring.profiles.active=prod
@@ -35,6 +35,7 @@ services:
   frontend:
     container_name: gastos-client
     image: devstoni/gastos-front:0.1.7
+    restart: unless-stopped
     ports:
       - $CLIENT_HOST_PORT:3001
     environment:
