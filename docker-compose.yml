@@ -35,7 +35,7 @@ services:
 
   frontend:
     container_name: gastos-client
-    image: devstoni/gastos-front:0.1.7
+    image: devstoni/gastos-front:0.1.8
     restart: unless-stopped
     ports:
       - $CLIENT_HOST_PORT:3001
